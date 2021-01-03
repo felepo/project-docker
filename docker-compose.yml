@@ -16,7 +16,7 @@ services:
       - '-c'
       - 'config_file=/etc/postgresql/postgresql.conf'
     volumes:
-      - './docker/postgressql/my-postgresql.conf:/etc/postgresql/postgresql.conf'
+      - './docker/postgresql/my-postgresql.conf:/etc/postgresql/postgresql.conf'
       - 'devnote-data-db:/var/lib/postgresql/data'
     networks: 
       - 'devnote-network'
