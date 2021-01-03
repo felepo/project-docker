@@ -21,6 +21,27 @@ services:
     networks: 
       - 'devnote-network'
 
+  devnote_laravel:
+    build: './docker/php/'
+    image: php-laravel:1.0
+    container_name: devnote_laravel
+    restart: always
+    expose: 
+      - '9000'
+    networks: 
+      - 'devnote-network'
+    volumes:
+      - './devnote:/var/www/devnote.local'
+    working_dir: '/var/www/devnote.local'
+    depends_on: 
+      - devnote_db
+    environment: 
+      - LANG=es_CO.UTF-8
+      - LC_ALL=es_CO.UTF-8
+      - LANGUAGE=es_CO:es
+    ports: 
+    - '80:8080'
+
 networks:
   devnote-network:
     driver: bridge
