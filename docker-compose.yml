@@ -39,8 +39,20 @@ services:
       - LANG=es_CO.UTF-8
       - LC_ALL=es_CO.UTF-8
       - LANGUAGE=es_CO:es
+    
+  server:
+    image: nginx
+    container_name: server
+    depends_on: 
+      - devnote_laravel
+    restart: always
+    volumes:
+      - './devnote:/var/www/devnote.local'
+      - './docker/nginx/devnote.local.conf:/etc/nginx/conf.d/devnote.local.conf'
     ports: 
-    - '80:8080'
+      - '80:80'
+    networks: 
+      - 'devnote-network'
 
 networks:
   devnote-network:
