@@ -31,6 +31,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y locales locales-all
 RUN sed -i 's/# es_CO.UTF-8 UTF-8/es_CO.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen
 
+# Instalar drivers Base de datos
+RUN apt-get install -y libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql
+
 # Limpiar cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
